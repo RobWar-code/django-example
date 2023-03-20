@@ -5,8 +5,11 @@ from .forms import ItemForm
 
 # Create your views here.
 def get_todo_list(request):
-    items = Item.objects.all()
-    return HttpResponse(request, items)
+    try:
+        items = Item.objects.all()
+    except Item.DoesNotExist():
+        return HttpResponse("Exception - Item model does not exist")
+    return HttpResponse(items)
 #    context = {
 #        'items': items
 #    }
