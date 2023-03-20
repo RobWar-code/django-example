@@ -6,10 +6,11 @@ from .forms import ItemForm
 # Create your views here.
 def get_todo_list(request):
     items = Item.objects.all()
-    context = {
-        'items': items
-    }
-    return render(request, "todo/todo-list.html", context)
+    return HttpResponse(items)
+#    context = {
+#        'items': items
+#    }
+#    return render(request, "todo/todo-list.html", context)
 
 
 def add_item(request):
